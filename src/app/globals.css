@@ -1,26 +1,77 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@layer components {
+  .btn-black {
+    @apply bg-black text-white py-3 px-6 items-center justify-center rounded-lg border border-black hover:border-white hover:bg-white hover:text-black cursor-pointer transition-all duration-300;
+  }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  .btn-white {
+    @apply bg-transparent text-black py-3 px-6 items-center justify-center rounded-lg border border-black hover:border-white hover:bg-white hover:text-black cursor-pointer transition-all duration-300;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  .logo-ticker-image {
+    @apply h-8 w-auto;
+  }
+
+  .nav-style {
+    @apply hover:text-blue-700 hover:font-bold transition-all duration-300;
+  }
+
+  .tag {
+    @apply text-lg inline-flex border border-[#222]/10 px-3 py-1 rounded-lg tracking-tight mt-10 mb-3
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.border-rainbow {
+  position: relative;
+  z-index: 0;
+  padding: 2px;
+  border-radius: 0.5rem;
+  background: linear-gradient(
+    270deg,
+    red,
+    orange,
+    yellow,
+    green,
+    blue,
+    indigo,
+    violet
+  );
+  background-size: 400% 400%;
+  animation: rainbow 5s ease infinite;
+  overflow: hidden;
+}
+
+.border-rainbow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 0.5rem;
+  padding: 2px;
+  background: inherit;
+  z-index: -1;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+}
+
+.border-rainbow > .inner {
+  position: relative;
+  z-index: 1;
+  background-color: transparent;
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.75rem;
 }
