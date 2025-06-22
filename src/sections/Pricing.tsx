@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 
 const pricingTiers = [
@@ -20,7 +19,7 @@ const pricingTiers = [
   {
     id: 2,
     title: "Pro",
-    monthlyPrice: 9,
+    monthlyPrice: "900.000",
     buttonText: "Sign up now",
     popular: true,
     inverse: true,
@@ -37,7 +36,7 @@ const pricingTiers = [
   {
     id: 3,
     title: "Business",
-    monthlyPrice: 19,
+    monthlyPrice: "1.500.000",
     buttonText: "Sign up now",
     popular: false,
     inverse: false,
@@ -58,7 +57,7 @@ const pricingTiers = [
 
 export const Pricing = () => {
   return (
-    <section className="py-24">
+    <section className="py-24 bg-white">
       <div className="w-[80%] mx-auto flex flex-col items-center justify-center">
         <div className="max-w-[900px] text-center">
           <h2 className="title-section">Pricing Plan</h2>
@@ -73,7 +72,7 @@ export const Pricing = () => {
               <div
                 key={tier.id}
                 className={twMerge(
-                  "p-10 rounded-3xl border border-[#000] shadow-[0_7px_14px_#EAEAEA max-w-lg w-full",
+                  "p-10 rounded-3xl shadow-2xl max-w-lg w-full",
                   tier.inverse === true && "border-black bg-black text-white/60"
                 )}
               >
@@ -87,7 +86,7 @@ export const Pricing = () => {
                     {tier.title}
                   </h3>
                   {tier.popular === true && (
-                    <div className="inline-flex text-md px-4 py-1.5 rounded-xl border border-white/20">
+                    <div className="inline-flex text-md px-4 py-1.5 rounded-md border border-white/20">
                       <span className="bg-[linear-gradient(to_right,#DD7DDF,#E1CD86,#BBCB92,#71C2EF,#DD7DDF)] text-transparent bg-clip-text font-medium">
                         Popular
                       </span>
@@ -95,22 +94,29 @@ export const Pricing = () => {
                   )}
                 </div>
                 <div className="flex items-baseline gap-1 mt-[30px]">
-                  <span className="text-4xl tracking-tighter font-bold">
-                    $ {tier.monthlyPrice}
+                  <span className="text-3xl tracking-tighter font-bold">
+                    Rp. {tier.monthlyPrice}
                   </span>
-                  <span className="tracking-tight font-bold text-black/50">
+                  <span
+                    className={twMerge(
+                      "tracking-tight font-bold text-black/50",
+                      tier.inverse === true && "text-white/60"
+                    )}
+                  >
                     /month
                   </span>
                 </div>
-                <button
-                  className={twMerge(
-                    "w-full bg-black text-white py-3 px-6 items-center justify-center rounded-lg border border-black hover:border-black hover:bg-transparent hover:text-black cursor-pointer transition-all duration-300 m-3",
-                    tier.inverse === true &&
-                      "bg-white text-black hover:text-white hover:border-white"
-                  )}
-                >
-                  {tier.buttonText}
-                </button>
+                <div className="flex justify-center mt-6">
+                  <button
+                    className={twMerge(
+                      "bg-black text-white p-3 w-full px-6 items-center justify-center rounded-lg border border-black hover:border-black hover:bg-transparent hover:text-black cursor-pointer transition-all duration-300",
+                      tier.inverse === true &&
+                        "bg-white text-black hover:text-white hover:border-white"
+                    )}
+                  >
+                    {tier.buttonText}
+                  </button>
+                </div>
                 <ul className="flex flex-col gap-5 mt-5">
                   {tier.features.map((feature) => {
                     return (
