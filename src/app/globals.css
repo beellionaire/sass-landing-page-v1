@@ -18,7 +18,15 @@
   }
 
   .tag {
-    @apply text-lg inline-flex border border-[#222]/10 px-3 py-1 rounded-lg tracking-tight mt-10 mb-3
+    @apply text-lg inline-flex border border-[#222]/10 px-3 py-1 rounded-lg tracking-tight mt-10 mb-3;
+  }
+
+  .title-section {
+    @apply p-4 text-3xl md:text-5xl md:leading-[60px] lg:text-6xl font-bold tracking-tighter bg-gradient-to-b from-black to-[#001E80] text-transparent bg-clip-text;
+  }
+
+  .description-section {
+    @apply mt-5 sm:text-lg md:text-xl leading-[30px] tracking-tight text-[#010D3E] text-center max-w-[700px];
   }
 }
 
